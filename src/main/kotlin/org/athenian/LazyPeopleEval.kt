@@ -5,17 +5,15 @@ fun main() {
         people
             .asSequence()
             .filter { it.age > 30 }
+            .onEach { println("First map evaluating $it") }
             .map {
-                println("First map evaluating $it")
                 it.name
                     .split(" ")
                     .map { name -> name[0] }
                     .joinToString("")
             }
-            .map {
-                println("Second map evaluating $it")
-                it.toUpperCase()
-            }
+            .onEach { println("Second map evaluating $it") }
+            .map { it.toUpperCase() }
             .toList()
     )
 }

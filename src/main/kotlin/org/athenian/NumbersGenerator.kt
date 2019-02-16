@@ -25,7 +25,25 @@ fun main() {
         print("$i ")
     println()
 
-    println("Even numbers <= 10: ${evenNumbers(10).toList()}")
+    print("Even numbers <= 10: ")
+    evenNumbers(10).forEach { print("$it ") }
+    println()
 
+    println("Even numbers <= 10: (${evenNumbers(10).joinToString(", ")})")
+
+    println("Even numbers <= 10: ${evenNumbers(10).toList()}")
     println("Odd numbers <= 10: ${oddNumbers(10).toList()}")
+
+
+    println("Min even number <= 10: ${evenNumbers(10).min()}")
+    println("Max even number <= 10: ${evenNumbers(10).max()}")
+    println("Count even number <= 10: ${evenNumbers(10).count()}")
+    println("Average of even numbers <= 10: ${evenNumbers(10).average()}")
+    println("First even number <= 10: ${evenNumbers(10).first()}")
+
+    // Boolean operations
+    println("Any even numbers <= 10 <= 6: ${evenNumbers(10).any { it <= 6 }}")
+    println("All even numbers <= 10 <= 6: ${evenNumbers(10).all { it <= 6 }}")
+
+    println("All numbers <= 10 ${evenNumbers(10).plus(oddNumbers(10)).sorted().toList()}")
 }
