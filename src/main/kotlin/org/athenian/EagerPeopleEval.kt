@@ -3,11 +3,11 @@ package org.athenian
 data class Person(val name: String, val age: Int)
 
 val people = listOf(
-    Person("Chris Martin", 31),
-    Person("Will Champion", 32),
-    Person("Johny Buckland", 33),
-    Person("Guy Berryman", 34),
-    Person("Mhris Cartin", 30)
+    Person("Chris martin", 31),
+    Person("Will champion", 32),
+    Person("Johny buckland", 33),
+    Person("Guy berryman", 34),
+    Person("Mhris cartin", 30)
 )
 
 fun main() {
@@ -15,10 +15,14 @@ fun main() {
         people
             .filter { it.age > 30 }
             .map {
+                println("First map evaluating $it")
                 it.name
                     .split(" ")
-                    .map { names -> names[0] }
+                    .map { name -> name[0] }
                     .joinToString("")
             }
-            .map { it.toUpperCase() })
+            .map {
+                println("Second map evaluating $it")
+                it.toUpperCase()
+            })
 }

@@ -6,12 +6,16 @@ fun main() {
             .asSequence()
             .filter { it.age > 30 }
             .map {
+                println("First map evaluating $it")
                 it.name
                     .split(" ")
-                    .map { names -> names[0] }
+                    .map { name -> name[0] }
                     .joinToString("")
             }
-            .map { it.toUpperCase() }
+            .map {
+                println("Second map evaluating $it")
+                it.toUpperCase()
+            }
             .toList()
     )
 }
