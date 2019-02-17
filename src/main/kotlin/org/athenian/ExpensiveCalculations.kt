@@ -1,0 +1,34 @@
+package org.athenian
+
+import kotlin.system.measureTimeMillis
+
+class DataFetcher {
+    fun fetch(valueToFind: Int): Int {
+        Thread.sleep(100)
+        return if (valueToFind == 10) valueToFind else -1
+    }
+}
+
+fun main() {
+
+    val dataFetcher = DataFetcher()
+
+    val eagerTime = measureTimeMillis {
+        print(
+            IntRange(1, 50)
+                .onEach { println("Evaluating $it") }
+                .map { dataFetcher.fetch(it) }
+                .any { it == 10 })
+    }
+    println(" took ${eagerTime}ms with eager evaluation.")
+
+    val lazyTime = measureTimeMillis {
+        print(
+            IntRange(1, 50)
+                .asSequence()
+                .onEach { println("Evaluating $it") }
+                .map { dataFetcher.fetch(it) }
+                .any { it == 10 })
+    }
+    println(" took ${lazyTime}ms with lazy evaluation.")
+}
