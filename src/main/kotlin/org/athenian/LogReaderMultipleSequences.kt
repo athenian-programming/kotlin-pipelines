@@ -26,7 +26,7 @@ fun getBytesColumn(data: Sequence<String>) =
     sequence {
         for (line in data) {
             val cols = line.split(" ")
-            if (cols.isEmpty() || cols.size != 19)
+            if (cols.size != 19)
                 continue
             val bytes = cols[9]
             yield(bytes)
