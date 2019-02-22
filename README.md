@@ -2,7 +2,7 @@
 
 The repo was motivated by [this post](https://medium.com/@desaismital/declarative-pipelines-in-kotlin-b9e18e77f2c5).
 
-* [Sequence Basics](src/main/kotlin/org/athenian/SequenceBasics.kt)
+* [Collection Operations](src/main/kotlin/org/athenian/SequenceBasics.kt)
 * [Easy vs Lazy Ordering](src/main/kotlin/org/athenian/EvaluationOrdering.kt)
 * [More Easy vs Lazy Ordering](src/main/kotlin/org/athenian/MoreEvaluationOrdering.kt)
 * [Expensive Calculations](src/main/kotlin/org/athenian/ExpensiveCalculations.kt)
