@@ -25,7 +25,6 @@ fun main() {
             .onEach { println("Second map evaluating $it") }
             .map { it.toUpperCase() })
 
-    println()
     println("Lazy eval: " +
             people
                 .asSequence()

@@ -19,8 +19,6 @@ fun main() {
     evenNumbers(10).forEach { print("$it ") }
     println()
 
-    println("Even numbers <= 10: ${IntRange(0, 10).filter { it % 2 == 0 }}")
-
     println("Even numbers <= 10: ${evenNumbers(10).toList()}")
     println("Even numbers <= 10: (${evenNumbers(10).joinToString(", ")})")
 
@@ -29,6 +27,8 @@ fun main() {
     println("Count even number <= 10: ${evenNumbers(10).count()}")
     println("Average of even numbers <= 10: ${evenNumbers(10).average()}")
     println("First even number <= 10: ${evenNumbers(10).first()}")
+
+    println("Even numbers <= 10: ${IntRange(0, 10).filter { it % 2 == 0 }}")
 
     // Chained
     val v1 =
