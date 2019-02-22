@@ -12,6 +12,7 @@ val people = listOf(
 
 fun main() {
     println(
+        "Eager eval: " +
         people
             .filter { it.age > 30 }
             .onEach { println("First map evaluating $it") }
@@ -23,4 +24,22 @@ fun main() {
             }
             .onEach { println("Second map evaluating $it") }
             .map { it.toUpperCase() })
+
+    println()
+    println("Lazy eval: " +
+            people
+                .asSequence()
+                .filter { it.age > 30 }
+                .onEach { println("First map evaluating $it") }
+                .map {
+                    it.name
+                        .split(" ")
+                        .map { name -> name[0] }
+                        .joinToString("")
+                }
+                .onEach { println("Second map evaluating $it") }
+                .map { it.toUpperCase() }
+                .toList()
+    )
+
 }

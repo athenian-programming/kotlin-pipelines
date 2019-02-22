@@ -4,13 +4,16 @@ import java.io.File
 
 fun main() {
     val file = File("data/access.log")
+    println("Total bytes with multiple sequences: ${withMultipleSequences(file)}")
+    println("Total bytes with single sequence: ${withSingleSequence(file)}")
+}
+
+fun withMultipleSequences(file: File): Int {
     val linesInFile = getLines(file)
     val bytesColumn = getBytesColumn(linesInFile)
     val bytes = getBytes(bytesColumn)
-    val total = bytes.sum()
-    println("Total bytes: $total")
+    return bytes.sum()
 }
-
 
 fun getLines(file: File): Sequence<String> {
     // Non expression body
@@ -41,3 +44,21 @@ fun getBytes(data: Sequence<String>) =
             }
         }
     }
+
+fun withSingleSequence(file: File): Int {
+    val lines =
+        sequence {
+            val data = file.bufferedReader().lineSequence()
+            for (line in data) {
+                yield(line)
+            }
+        }
+    val bytes =
+        lines
+            .map { it.split(" ") }
+            .filter { it.size == 19 }
+            .map { it[9] }
+            .filter { it != "-" }
+            .map { it.toInt() }
+    return bytes.sum()
+}
