@@ -60,4 +60,12 @@ fun main() {
             .groupBy { it.length }
             .map { (k, v) -> k to v.size }
     println("Dict words: $words")
+
+    val palindromes =
+        File("/usr/share/dict/words")
+            .bufferedReader()
+            .lineSequence()
+            .filter { it == it.reversed() }
+            .toList()
+    println("Palindromes: $palindromes")
 }
