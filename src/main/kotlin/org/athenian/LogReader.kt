@@ -5,7 +5,8 @@ import java.io.File
 fun main() {
     val file = File("data/access.log")
     println("Total bytes with multiple sequences: ${withMultipleSequences(file)}")
-    println("Total bytes with single sequence: ${withSingleSequence(file)}")
+    println("Total bytes with single sequence1: ${withSingleSequence1(file)}")
+    println("Total bytes with single sequence2: ${withSingleSequence2(file)}")
 }
 
 fun withMultipleSequences(file: File): Int {
@@ -45,7 +46,7 @@ fun getBytes(data: Sequence<String>) =
         }
     }
 
-fun withSingleSequence(file: File): Int {
+fun withSingleSequence1(file: File): Int {
     val lines =
         sequence {
             val data = file.bufferedReader().lineSequence()
@@ -55,6 +56,18 @@ fun withSingleSequence(file: File): Int {
         }
     val bytes =
         lines
+            .map { it.split(" ") }
+            .filter { it.size == 19 }
+            .map { it[9] }
+            .filter { it != "-" }
+            .map { it.toInt() }
+    return bytes.sum()
+}
+
+fun withSingleSequence2(file: File): Int {
+    val bytes =
+        file.bufferedReader()
+            .lineSequence()
             .map { it.split(" ") }
             .filter { it.size == 19 }
             .map { it[9] }
