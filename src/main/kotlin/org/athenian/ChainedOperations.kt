@@ -44,16 +44,14 @@ fun main() {
 
     val mappedFlatMapNums =
         IntRange(1, 10)
-            .flatMap { v ->
-                // Avoid shadowing it by using v
-                IntRange(1, v * 2).map { v }
-            }
+            // Avoid shadowing "it" by using v
+            .flatMap { v -> IntRange(1, v * 2).map { v } }
             .groupBy { it }
             .map { (k, v) -> k to v.size }
     println("Mapped flatmap numbers: $mappedFlatMapNums")
 
     val words =
-        File("/usr/share/dict/words")
+        File("data/words")
             .bufferedReader()
             .lineSequence()
             .filter { it.startsWith("pa") }
@@ -62,10 +60,24 @@ fun main() {
     println("Dict words: $words")
 
     val palindromes =
-        File("/usr/share/dict/words")
+        File("data/words")
             .bufferedReader()
             .lineSequence()
+            .filter { it.length > 1 }
             .filter { it == it.reversed() }
             .toList()
-    println("Palindromes: $palindromes")
+
+    println("${palindromes.size} palindromes: $palindromes")
+
+    val longest =
+        palindromes
+            .groupBy { it.length }
+            .maxBy { it.key }
+    println("Longest palindromes with length of ${longest!!.key}: ${longest!!.value}")
+
+    val greatest =
+        palindromes
+            .groupBy { it.length }
+            .maxBy { it.value.size }
+    println("Greatest # (${greatest!!.value.size}) of palindromes with length of ${greatest!!.key}: ${greatest!!.value}")
 }
