@@ -36,7 +36,7 @@ fun main() {
         IntRange(0, 6)
             .flatMap {
                 if (it % 2 == 0)
-                    listOf(it, it, it)
+                    List(it) { v -> it }
                 else
                     emptyList()
             }
@@ -66,7 +66,6 @@ fun main() {
             .filter { it.length > 1 }
             .filter { it == it.reversed() }
             .toList()
-
     println("${palindromes.size} palindromes: $palindromes")
 
     val longest =
