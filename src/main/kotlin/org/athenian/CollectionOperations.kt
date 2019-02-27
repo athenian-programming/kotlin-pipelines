@@ -11,11 +11,6 @@ fun evenNumbers(max: Int): Sequence<Int> {
 
 fun main() {
     print("Even numbers <= 10: ")
-    for (i in evenNumbers(10))
-        print("$i ")
-    println()
-
-    print("Even numbers <= 10: ")
     evenNumbers(10).forEach { print("$it ") }
     println()
 
