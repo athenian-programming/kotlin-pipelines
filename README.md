@@ -2,7 +2,7 @@
 
 The repo was motivated by [this post](https://medium.com/@desaismital/declarative-pipelines-in-kotlin-b9e18e77f2c5).
 
-* [Sequences and Yields](src/main/kotlin/org/athenian/SequencesAndYields.kt)
+* [Continuations, Sequences and Yields](src/main/kotlin/org/athenian/ContinuationsSequencesAndYields.kt)
 * [Collection Operations](src/main/kotlin/org/athenian/CollectionOperations.kt)
 * [Chained Operations](src/main/kotlin/org/athenian/ChainedOperations.kt)
 * [Easy vs Lazy Ordering](src/main/kotlin/org/athenian/EvaluationOrdering.kt)
