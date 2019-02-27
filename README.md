@@ -8,3 +8,5 @@ The repo was motivated by [this post](https://medium.com/@desaismital/declarativ
 * [More Easy vs Lazy Ordering](src/main/kotlin/org/athenian/MoreEvaluationOrdering.kt)
 * [Expensive Calculations](src/main/kotlin/org/athenian/ExpensiveCalculations.kt)
 * [Processing Data](src/main/kotlin/org/athenian/LogReader.kt)
+
+Additional comments on Sequences are [here](https://blog.kotlin-academy.com/effective-kotlin-use-sequence-for-bigger-collections-with-more-than-one-processing-step-649a15bb4bf).
