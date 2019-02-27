@@ -10,4 +10,4 @@ The repo was motivated by [this post](https://medium.com/@desaismital/declarativ
 * [Expensive Calculations](src/main/kotlin/org/athenian/ExpensiveCalculations.kt)
 * [Processing Data](src/main/kotlin/org/athenian/LogReader.kt)
 
-Additional comments on Sequences are [here](https://blog.kotlin-academy.com/effective-kotlin-use-sequence-for-bigger-collections-with-more-than-one-processing-step-649a15bb4bf).
+A good post on Sequences is [here](https://blog.kotlin-academy.com/effective-kotlin-use-sequence-for-bigger-collections-with-more-than-one-processing-step-649a15bb4bf).
