@@ -15,7 +15,7 @@ fun main() {
 
     val eagerTime = measureTimeMillis {
         print(
-            IntRange(1, 50)
+            (1..50)
                 .onEach { println("Evaluating $it") }
                 .map { dataFetcher.fetch(it) }
                 .any { it == 10 })
@@ -24,7 +24,7 @@ fun main() {
 
     val lazyTime = measureTimeMillis {
         print(
-            IntRange(1, 50)
+            (1..50)
                 .asSequence()
                 .onEach { println("Evaluating $it") }
                 .map { dataFetcher.fetch(it) }

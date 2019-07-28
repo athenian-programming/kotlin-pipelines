@@ -33,7 +33,7 @@ fun main() {
     println("All numbers <= 10 $allNums")
 
     val flatMapNums =
-        IntRange(0, 6)
+        (0..6)
             .flatMap {
                 if (it % 2 == 0)
                     List(it) { v -> it }
@@ -43,9 +43,9 @@ fun main() {
     println("Flatmap numbers: $flatMapNums")
 
     val mappedFlatMapNums =
-        IntRange(1, 10)
+        (1..10)
             // Avoid shadowing "it" by using v
-            .flatMap { v -> IntRange(1, v * 2).map { v } }
+            .flatMap { v -> (1..(v * 2)).map { v } }
             .groupBy { it }
             .map { (k, v) -> k to v.size }
     println("Mapped flatmap numbers: $mappedFlatMapNums")
