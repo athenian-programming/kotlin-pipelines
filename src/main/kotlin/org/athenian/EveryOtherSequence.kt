@@ -1,5 +1,7 @@
 package org.athenian
 
+import java.util.concurrent.atomic.AtomicInteger
+
 fun <T> Sequence<T>.everyOther() = EveryOtherSequence(this)
 
 class EveryOtherSequence<T>(private val underlyingSequence: Sequence<T>) : Sequence<T> {
@@ -18,9 +20,23 @@ class EveryOtherSequence<T>(private val underlyingSequence: Sequence<T>) : Seque
         }
 }
 
+public fun <T> Iterable<T>.everyOther(): List<T> = everyOther(ArrayList<T>())
+
+public fun <T, C : MutableCollection<in T>> Iterable<T>.everyOther(destination: C): C {
+    val counter = AtomicInteger(0)
+    for (element in this)
+        if (counter.getAndIncrement() % 2 == 0)
+            destination.add(element)
+    return destination
+}
+
 fun main() {
     (0..10)
         .asSequence()
+        .everyOther()
+        .forEach { println("Value: $it") }
+
+    (0..10)
         .everyOther()
         .forEach { println("Value: $it") }
 }
