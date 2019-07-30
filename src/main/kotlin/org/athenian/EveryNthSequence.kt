@@ -1,7 +1,5 @@
 package org.athenian
 
-import java.util.concurrent.atomic.AtomicInteger
-
 fun <T> Sequence<T>.everyNth(inc: Int) = EveryNthSequence(inc, this)
 
 class EveryNthSequence<T>(private val inc: Int, private val underlyingSequence: Sequence<T>) : Sequence<T> {
@@ -26,10 +24,12 @@ class EveryNthSequence<T>(private val inc: Int, private val underlyingSequence: 
 public fun <T> Iterable<T>.everyNth(inc: Int): List<T> = everyNth(ArrayList<T>(), inc)
 
 public fun <T, C : MutableCollection<in T>> Iterable<T>.everyNth(destination: C, inc: Int): C {
-    val counter = AtomicInteger(0)
-    for (element in this)
-        if (counter.getAndIncrement() % inc == 0)
+    var counter = 0
+    for (element in this) {
+        if (counter % inc == 0)
             destination.add(element)
+        counter++
+    }
     return destination
 }
 
@@ -41,6 +41,6 @@ fun main() {
         .forEach { println("Value: $it") }
 
     (0..50)
-        .everyNth(50)
+        .everyNth(5)
         .forEach { println("Value: $it") }
 }
