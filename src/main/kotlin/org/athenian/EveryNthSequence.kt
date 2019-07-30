@@ -13,9 +13,9 @@ class EveryNthSequence<T>(private val inc: Int, private val underlyingSequence: 
 
             override fun next(): T {
                 val item = iterator.next()
-                for (i in 0..inc - 2) {
+                repeat(inc - 1) {
                     if (!iterator.hasNext())
-                        break
+                        return@repeat
                     iterator.next()
                 }
                 return item
