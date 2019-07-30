@@ -13,9 +13,10 @@ class EveryNthSequence<T>(private val inc: Int, private val underlyingSequence: 
 
             override fun next(): T {
                 val item = iterator.next()
-                (1..inc - 1).forEach {
-                    if (iterator.hasNext())
-                        iterator.next()
+                for (i in 0..inc - 2) {
+                    if (!iterator.hasNext())
+                        break
+                    iterator.next()
                 }
                 return item
             }
@@ -40,6 +41,6 @@ fun main() {
         .forEach { println("Value: $it") }
 
     (0..50)
-        .everyNth(5)
+        .everyNth(50)
         .forEach { println("Value: $it") }
 }
