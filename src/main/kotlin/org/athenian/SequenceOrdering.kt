@@ -2,7 +2,6 @@ package org.athenian
 
 
 fun main() {
-
     val nosequnce =
         (0..10)
             .onEach { println("Evaluating #1 $it") }
@@ -19,6 +18,4 @@ fun main() {
             .take(5)
             .toList()
     println(sequnce)
-
 }
-

@@ -1,24 +1,19 @@
 package org.athenian
 
-fun doReMi(): Sequence<String> {
-    val notes = listOf("Do", "Re", "Mi", "Fa", "Sol", "La", "Ti", "Do")
-    return sequence {
-        for (note in notes)
-            yield(note)
+fun doReMi(): Sequence<String> =
+    sequence {
+        listOf("Do", "Re", "Mi", "Fa", "Sol", "La", "Ti", "Do").forEach { yield(it) }
     }
-}
 
-fun factorOfFive(max: Int): Sequence<Int> {
-    return sequence {
+fun factorOfFive(max: Int): Sequence<Int> =
+    sequence {
         for (i in 0 until max step 5)
             yield(i)
     }
-}
 
 fun main() {
-    for (note in doReMi())
-        println("Singing $note")
+    
+    doReMi().forEach { println("Singing $it") }
 
-    for (f in factorOfFive(25))
-        println("Val $f")
+    factorOfFive(25).forEach { println("Val $it") }
 }

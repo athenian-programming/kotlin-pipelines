@@ -19,10 +19,9 @@ fun main() {
 
     val oddNumbers =
         sequence {
-            for (i in 0..10) {
-                if (i % 2 != 0)
-                    yield(i)
-            }
+            (0..10)
+                .filter { it % 2 != 0 }
+                .forEach { yield(it) }
         }
 
     val allNums =
@@ -44,9 +43,13 @@ fun main() {
 
     val mappedFlatMapNums =
         (1..10)
-            // Avoid shadowing "it" by using v
-            .flatMap { v -> (1..(v * 2)).map { v } }
+            .flatMap {
+                (1..(it * 2))
+                    .map { v -> it } // Avoid shadowing "it" by using v
+            }
+            //.onEach { println(it) }
             .groupBy { it }
+            //.onEach { println(it) }
             .map { (k, v) -> k to v.size }
     println("Mapped flatmap numbers: $mappedFlatMapNums")
 
@@ -72,11 +75,11 @@ fun main() {
         palindromes
             .groupBy { it.length }
             .maxBy { it.key }
-    println("Longest palindromes with length of ${longest!!.key}: ${longest!!.value}")
+    println("Longest palindromes with length of ${longest!!.key}: ${longest.value}")
 
     val greatest =
         palindromes
             .groupBy { it.length }
             .maxBy { it.value.size }
-    println("Greatest # (${greatest!!.value.size}) of palindromes with length of ${greatest!!.key}: ${greatest!!.value}")
+    println("Greatest # (${greatest!!.value.size}) of palindromes with length of ${greatest.key}: ${greatest.value}")
 }

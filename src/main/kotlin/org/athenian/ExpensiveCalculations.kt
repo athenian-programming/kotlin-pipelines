@@ -2,14 +2,15 @@ package org.athenian
 
 import kotlin.system.measureTimeMillis
 
-class DataFetcher {
-    fun fetch(valueToFind: Int): Int {
-        Thread.sleep(100)
-        return if (valueToFind == 10) valueToFind else -1
-    }
-}
-
 fun main() {
+
+    class DataFetcher {
+        fun fetch(valueToFind: Int): Int {
+            Thread.sleep(100)
+            return if (valueToFind == 10) valueToFind else -1
+        }
+    }
+
 
     val dataFetcher = DataFetcher()
 

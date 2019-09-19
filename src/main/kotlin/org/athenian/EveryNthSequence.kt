@@ -21,9 +21,9 @@ class EveryNthSequence<T>(private val inc: Int, private val underlyingSequence: 
         }
 }
 
-public fun <T> Iterable<T>.everyNth(inc: Int): List<T> = everyNth(ArrayList<T>(), inc)
+fun <T> Iterable<T>.everyNth(inc: Int): List<T> = everyNth(ArrayList<T>(), inc)
 
-public fun <T, C : MutableCollection<in T>> Iterable<T>.everyNth(destination: C, inc: Int): C {
+fun <T, C : MutableCollection<in T>> Iterable<T>.everyNth(destination: C, inc: Int): C {
     var counter = 0
     for (element in this) {
         if (counter % inc == 0)

@@ -16,9 +16,7 @@ fun main() {
             .filter { it.length > 0 }
             .toList()
 
-    print("Even numbers <= 10: ")
-    evenNumbers(10).forEach { print("$it ") }
-    println()
+    println("Every other: ${everyOther.toList()}")
 
     println("Even numbers <= 10: ${evenNumbers(10).toList()}")
     println("Even numbers <= 10: (${evenNumbers(10).joinToString(", ")})")

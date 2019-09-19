@@ -1,8 +1,15 @@
 package org.athenian
 
+fun oddNumbers(max: Int): Sequence<Int> =
+    sequence {
+        (0..max)
+            .filter { it % 2 != 0 }
+            .forEach { yield(it) }
+    }
+
 fun main() {
     val numbers =
-        sequence {
+        sequence<Int> {
             println("one")
             yield(1)
 
@@ -15,27 +22,10 @@ fun main() {
             println("Sequence finished...")
         }
 
-    for (n in numbers)
-        println("number = $n")
+    numbers.forEach { println("number = $it") }
     println("Done...")
 
-    print("Odd numbers <= 10: ")
-    for (i in oddNumbers(10))
-        print("$i ")
-    println()
+    println("Odd numbers <= 10: ${oddNumbers(10).toList()}")
 
-    print("Odd numbers <= 20: ")
-    for (i in oddNumbers(20))
-        print("$i ")
-    println()
+    println("Odd numbers <= 20: ${oddNumbers(20).toList()}")
 }
-
-fun oddNumbers(max: Int): Sequence<Int> {
-    return sequence {
-        for (i in 0..max) {
-            if (i % 2 != 0)
-                yield(i)
-        }
-    }
-}
-

@@ -18,9 +18,9 @@ class EveryOtherSequence<T>(private val underlyingSequence: Sequence<T>) : Seque
         }
 }
 
-public fun <T> Iterable<T>.everyOther(): List<T> = everyOther(ArrayList<T>())
+fun <T> Iterable<T>.everyOther(): List<T> = everyOther(ArrayList<T>())
 
-public fun <T, C : MutableCollection<in T>> Iterable<T>.everyOther(destination: C): C {
+fun <T, C : MutableCollection<in T>> Iterable<T>.everyOther(destination: C): C {
     var skip = true
     for (element in this) {
         if (skip)

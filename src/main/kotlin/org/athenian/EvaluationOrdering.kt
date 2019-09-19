@@ -6,6 +6,7 @@ fun main() {
     val lstMapped =
         lst.onEach { println("Processing list value: $it") }
             .map { it * it }
+
     println("Before list sum")
     val lstSum = lstMapped.sum()
     println("List sum:  $lstSum")
@@ -18,6 +19,7 @@ fun main() {
     val seqMapped =
         seq.onEach { println("Processing sequence value: $it") }
             .map { it * it }
+
     println("Before sequence sum")
     val seqSum = seqMapped.sum()
     println("Sequence sum: $seqSum")
