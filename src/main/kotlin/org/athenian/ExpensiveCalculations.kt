@@ -11,25 +11,26 @@ fun main() {
         }
     }
 
-
     val dataFetcher = DataFetcher()
 
-    val eagerTime = measureTimeMillis {
-        print(
-            (1..50)
-                .onEach { println("Evaluating $it") }
-                .map { dataFetcher.fetch(it) }
-                .any { it == 10 })
-    }
+    val eagerTime =
+        measureTimeMillis {
+            print(
+                (1..50)
+                    .onEach { println("Evaluating $it") }
+                    .map { dataFetcher.fetch(it) }
+                    .any { it == 10 })
+        }
     println(" took ${eagerTime}ms with eager evaluation.")
 
-    val lazyTime = measureTimeMillis {
-        print(
-            (1..50)
-                .asSequence()
-                .onEach { println("Evaluating $it") }
-                .map { dataFetcher.fetch(it) }
-                .any { it == 10 })
-    }
+    val lazyTime =
+        measureTimeMillis {
+            print(
+                (1..50)
+                    .asSequence()
+                    .onEach { println("Evaluating $it") }
+                    .map { dataFetcher.fetch(it) }
+                    .any { it == 10 })
+        }
     println(" took ${lazyTime}ms with lazy evaluation.")
 }

@@ -12,7 +12,6 @@ fun factorOfFive(max: Int): Sequence<Int> =
     }
 
 fun main() {
-    
     doReMi().forEach { println("Singing $it") }
 
     factorOfFive(25).forEach { println("Val $it") }

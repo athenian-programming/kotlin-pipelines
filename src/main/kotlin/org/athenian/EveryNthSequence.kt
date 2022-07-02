@@ -1,46 +1,30 @@
 package org.athenian
 
-fun <T> Sequence<T>.everyNth(inc: Int) = EveryNthSequence(inc, this)
-
-class EveryNthSequence<T>(private val inc: Int, private val underlyingSequence: Sequence<T>) : Sequence<T> {
-    override fun iterator() =
-        object : Iterator<T> {
-            val iterator = underlyingSequence.iterator()
-
-            override fun hasNext() = iterator.hasNext()
-
-            override fun next(): T {
-                val item = iterator.next()
-                repeat(inc - 1) {
-                    if (!iterator.hasNext())
-                        return@repeat
-                    iterator.next()
-                }
-                return item
-            }
+fun <T> Sequence<T>.everyNth(inc: Int) =
+    sequence {
+        for ((index, element) in this@everyNth.withIndex()) {
+            if (index % inc == 0)
+                yield(element)
         }
-}
-
-fun <T> Iterable<T>.everyNth(inc: Int): List<T> = everyNth(ArrayList<T>(), inc)
-
-fun <T, C : MutableCollection<in T>> Iterable<T>.everyNth(destination: C, inc: Int): C {
-    var counter = 0
-    for (element in this) {
-        if (counter % inc == 0)
-            destination.add(element)
-        counter++
     }
-    return destination
-}
 
+
+fun <T> Iterable<T>.everyNth(inc: Int): List<T> {
+    return buildList {
+        for ((index, element) in this@everyNth.withIndex()) {
+            if (index % inc == 0)
+                add(element)
+        }
+    }
+}
 
 fun main() {
     (0..50)
         .asSequence()
         .everyNth(5)
-        .forEach { println("Value: $it") }
+        .also { println("Sequence values: ${it.toList()}") }
 
     (0..50)
         .everyNth(5)
-        .forEach { println("Value: $it") }
+        .also { println("Non-sequence values: $it") }
 }

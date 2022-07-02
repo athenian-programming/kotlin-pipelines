@@ -1,42 +1,32 @@
 package org.athenian
 
-fun <T> Sequence<T>.everyOther() = EveryOtherSequence(this)
-
-class EveryOtherSequence<T>(private val underlyingSequence: Sequence<T>) : Sequence<T> {
-    override fun iterator() =
-        object : Iterator<T> {
-            val iterator = underlyingSequence.iterator()
-
-            override fun hasNext() = iterator.hasNext()
-
-            override fun next(): T {
-                val item = iterator.next()
-                if (iterator.hasNext())
-                    iterator.next()
-                return item
-            }
+fun <T> Sequence<T>.everyOther() =
+    sequence {
+        var skip = true
+        for (element in this@everyOther) {
+            if (skip)
+                yield(element)
+            skip = !skip
         }
-}
-
-fun <T> Iterable<T>.everyOther(): List<T> = everyOther(ArrayList<T>())
-
-fun <T, C : MutableCollection<in T>> Iterable<T>.everyOther(destination: C): C {
-    var skip = true
-    for (element in this) {
-        if (skip)
-            destination.add(element)
-        skip = !skip
     }
-    return destination
-}
+
+fun <T> Iterable<T>.everyOther() =
+    buildList {
+        var skip = true
+        for (element in this@everyOther) {
+            if (skip)
+                add(element)
+            skip = !skip
+        }
+    }
 
 fun main() {
     (0..10)
         .asSequence()
         .everyOther()
-        .forEach { println("Value: $it") }
+        .also { println("Sequence values: ${it.toList()}") }
 
     (0..10)
         .everyOther()
-        .forEach { println("Value: $it") }
+        .also { println("Non-sequence values: $it") }
 }

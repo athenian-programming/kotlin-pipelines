@@ -8,9 +8,8 @@ fun main() {
         // Non expression body
         return sequence {
             val data = file.bufferedReader().lineSequence()
-            for (line in data) {
+            for (line in data)
                 yield(line)
-            }
         }
     }
 

@@ -24,7 +24,7 @@ fun main() {
                             .joinToString("")
                     }
                     .onEach { println("Second map evaluating $it") }
-                    .map { it.toUpperCase() })
+                    .map { it.uppercase() })
 
     println("Lazy eval: " +
             people
@@ -38,7 +38,7 @@ fun main() {
                         .joinToString("")
                 }
                 .onEach { println("Second map evaluating $it") }
-                .map { it.toUpperCase() }
+                .map { it.uppercase() }
                 .toList()
     )
 
