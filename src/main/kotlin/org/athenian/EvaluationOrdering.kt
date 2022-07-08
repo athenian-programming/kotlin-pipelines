@@ -9,7 +9,6 @@ fun main() {
     println("Before list sum")
     println("List sum: ${listVals.sum()}")
 
-
     val seqVals =
         sequenceOf(1, 2, 3, 4, 5)
             .onEach { println("Processing sequence value: $it") }

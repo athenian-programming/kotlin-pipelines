@@ -1,6 +1,6 @@
 package org.athenian
 
-fun oddNumbers(): Sequence<Int> =
+fun oddNumbers() =
     sequence {
         (0..Int.MAX_VALUE)
             .asSequence()

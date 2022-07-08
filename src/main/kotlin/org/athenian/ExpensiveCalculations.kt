@@ -3,7 +3,6 @@ package org.athenian
 import kotlin.system.measureTimeMillis
 
 fun main() {
-
     class DataFetcher {
         fun fetch(valueToFind: Int): Int {
             Thread.sleep(100)
@@ -23,14 +22,13 @@ fun main() {
         }
     println(" took ${eagerTime}ms with eager evaluation.")
 
-    val lazyTime =
-        measureTimeMillis {
-            print(
-                (1..50)
-                    .asSequence()
-                    .onEach { println("Evaluating $it") }
-                    .map { dataFetcher.fetch(it) }
-                    .any { it == 10 })
-        }
-    println(" took ${lazyTime}ms with lazy evaluation.")
+    measureTimeMillis {
+        print(
+            (1..50)
+                .asSequence()
+                .onEach { println("Evaluating $it") }
+                .map { dataFetcher.fetch(it) }
+                .any { it == 10 })
+    }
+        .also { println(" took $it ms with lazy evaluation.") }
 }

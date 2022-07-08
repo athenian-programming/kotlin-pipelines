@@ -8,7 +8,6 @@ fun evenNumbers() =
     }
 
 fun main() {
-
     val everyOther =
         doReMi()
             .mapIndexed { i, note -> if (i % 2 == 0) note else "" }
@@ -23,13 +22,12 @@ fun main() {
     val reversedOdds = oddNumbers().take(11).toList().reversed().joinToString(", ")
     println("Odd numbers <= 11 reversed: $reversedOdds")
 
-    val zipped =
-        evenNumbers()
-            .take(6)
-            .map { it * it }
-            .zip(evenNumbers().take(6).map { it * it * it })
-            .joinToString(", ")
-    println("Zipped squares and cubes: $zipped")
+    evenNumbers()
+        .take(6)
+        .map { it * it }
+        .zip(evenNumbers().take(6).map { it * it * it })
+        .joinToString(", ")
+        .also { println("Zipped squares and cubes: $it") }
 
     println("Min even number <= 10: ${evenNumbers().take(10).min()}")
     println("Max even number <= 10: ${evenNumbers().take(10).max()}")

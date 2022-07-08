@@ -8,7 +8,6 @@ fun <T> Sequence<T>.everyNth(inc: Int) =
         }
     }
 
-
 fun <T> Iterable<T>.everyNth(inc: Int) =
     buildList {
         for ((index, element) in this@everyNth.withIndex()) {

@@ -3,47 +3,42 @@ package org.athenian
 import java.io.File
 
 fun main() {
-    val v1 =
-        evenNumbers()
-            .take(10)
-            .filter { it <= 8 }
-            .average()
-    println("Average of even numbers <= 8: $v1")
+    evenNumbers()
+        .take(10)
+        .filter { it <= 8 }
+        .average()
+        .also { println("Average of even numbers <= 8: $it") }
 
-    val v2 =
-        evenNumbers()
-            .take(10)
-            .filter { it <= 8 }
-            .map { it * it }
-            .average()
-    println("Average of even numbers <= 8 squared: $v2")
+    evenNumbers()
+        .take(10)
+        .filter { it <= 8 }
+        .map { it * it }
+        .average()
+        .also { println("Average of even numbers <= 8 squared: $it") }
 
-    val allNums =
-        evenNumbers()
-            .take(5)
-            .plus(oddNumbers().take(5))
-            .sorted()
-            .toList()
-    println("All numbers <= 10: $allNums")
+    evenNumbers()
+        .take(5)
+        .plus(oddNumbers().take(5))
+        .sorted()
+        .toList()
+        .also { println("All numbers <= 10: $it") }
 
-    val flatMapNums =
-        (0..6)
-            .flatMap {
-                if (it % 2 == 0)
-                    List(it) { v -> it }
-                else
-                    emptyList()
-            }
-    println("Flatmap numbers: $flatMapNums")
+    (0..6)
+        .flatMap {
+            if (it % 2 == 0)
+                List(it) { v -> it }
+            else
+                emptyList()
+        }
+        .also { println("Flatmap numbers: $it") }
 
-    val mappedFlatMapNums =
-        (1..10)
-            .flatMap { (1..(it * 2)).map { i -> it } }
-            //.also { println(it) }
-            .groupBy { it }
-            //.also { println(it) }
-            .map { (i, v) -> i to v.size }
-    println("Mapped flatmap numbers: $mappedFlatMapNums")
+    (1..10)
+        .flatMap { (1..(it * 2)).map { i -> it } }
+        //.also { println(it) }
+        .groupBy { it }
+        //.also { println(it) }
+        .map { (i, v) -> i to v.size }
+        .also { println("Mapped flatmap numbers: $it") }
 
     File("data/words")
         .bufferedReader()

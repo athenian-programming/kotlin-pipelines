@@ -3,7 +3,6 @@ package org.athenian
 import java.io.File
 
 fun main() {
-
     fun getLines(file: File): Sequence<String> {
         // Non expression body
         return sequence {
