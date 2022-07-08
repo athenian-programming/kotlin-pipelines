@@ -2,21 +2,20 @@ package org.athenian
 
 fun <T> Sequence<T>.everyNth(inc: Int) =
     sequence {
-        for ((index, element) in this@everyNth.withIndex()) {
+        this@everyNth.withIndex().forEach { (index, element) ->
             if (index % inc == 0)
                 yield(element)
         }
     }
 
 
-fun <T> Iterable<T>.everyNth(inc: Int): List<T> {
-    return buildList {
+fun <T> Iterable<T>.everyNth(inc: Int) =
+    buildList {
         for ((index, element) in this@everyNth.withIndex()) {
             if (index % inc == 0)
                 add(element)
         }
     }
-}
 
 fun main() {
     (0..50)

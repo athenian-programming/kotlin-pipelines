@@ -2,9 +2,9 @@ package org.athenian
 
 fun <T> Sequence<T>.everyOther() =
     sequence {
-        var skip = true
-        for (element in this@everyOther) {
-            if (skip)
+        var skip = false
+        this@everyOther.forEach { element ->
+            if (!skip)
                 yield(element)
             skip = !skip
         }
@@ -12,10 +12,10 @@ fun <T> Sequence<T>.everyOther() =
 
 fun <T> Iterable<T>.everyOther() =
     buildList {
-        var skip = true
+        var skip = false
         for (element in this@everyOther) {
-            if (skip)
-                add(element)
+            if (!skip)
+                this += element
             skip = !skip
         }
     }
