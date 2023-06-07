@@ -1,15 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-
 plugins {
-    kotlin("jvm") version "1.7.10"
-    id("com.github.ben-manes.versions") version "0.42.0"
+    kotlin("jvm") version "1.8.21"
+    id("com.github.ben-manes.versions") version "0.46.0"
 }
 
 group = "org.athenian"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    google()
     mavenCentral()
     mavenLocal()
 }
@@ -19,5 +19,5 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "17"
 }
